@@ -1,0 +1,150 @@
+/* Root Variables for Theming */
+:root {
+    --bg-color: grey;
+    --text-color: white;
+    --task-bg: #fff;
+    --task-border: #ddd;
+    --completed-text: #888;
+}
+
+/* General Styling */
+body {
+    background-color: var(--bg-color);
+    font-family: 'Poppins', Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-size: calc(16px + 0.5vw);
+    color: var(--text-color);
+}
+
+h1 {
+    color: var(--text-color);
+}
+
+input, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: 2px solid #aaa;
+    background-color: #f5f5f5;
+}
+
+/* Task List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 700px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--task-bg);
+    border: 1px solid var(--task-border);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+li.removing {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.Completed {
+    text-decoration: line-through;
+    color: var(--completed-text);
+}
+
+/* Task Button Styling */
+.task-button {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #bbb;
+    color: white;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Priority Labels */
+.priority-low {
+    background-color: #d4f5d4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.priority-medium {
+    background-color: #f5e6a4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.priority-high {
+    background-color: #f5a4a4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    input, button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-button {
+        justify-content: flex-start;
+    }
+}
+
+/* Tooltip for Buttons */
+button {
+    position: relative;
+}
+
+button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+button:hover::after {
+    opacity: 1;
+}
